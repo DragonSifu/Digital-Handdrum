@@ -59,10 +59,12 @@ AudioMixer4              mixer8; //xy=819,417
 AudioMixer4              mixer7;         //xy=823,172
 AudioMixer4              mixer2;         //xy=1029,569
 AudioEffectDelayExternal delayExt1;      //xy=1110,238
-AudioEffectFlange        flange1;        //xy=1219,599
+AudioMixer4              mixer3;         //xy=1176,567
 AudioMixer4              mixer6;         //xy=1308,209
-AudioMixer4              mixer5;         //xy=1355,331
-AudioOutputI2S           i2s1;           //xy=1409,552
+AudioMixer4              mixer5;         //xy=1349,328
+AudioEffectFlange        flange1;        //xy=1375,533
+AudioFilterStateVariable filter1;        //xy=1533,431
+AudioOutputI2S           i2s1;           //xy=1548,600
 AudioConnection          patchCord1(sine13, 0, multiply8, 0);
 AudioConnection          patchCord2(sine14, 0, multiply7, 0);
 AudioConnection          patchCord3(sine15, 0, multiply5, 0);
@@ -115,9 +117,20 @@ AudioConnection          patchCord49(mixer1, 0, mixer2, 3);
 AudioConnection          patchCord50(mixer9, 0, mixer2, 2);
 AudioConnection          patchCord51(mixer8, 0, mixer2, 1);
 AudioConnection          patchCord52(mixer7, 0, mixer2, 0);
-AudioConnection          patchCord53(mixer2, 0, i2s1, 0);
-AudioConnection          patchCord54(mixer2, flange1);
-AudioConnection          patchCord55(flange1, 0, i2s1, 1);
+AudioConnection          patchCord53(mixer2, 0, mixer3, 1);
+AudioConnection          patchCord54(delayExt1, 0, mixer6, 0);
+AudioConnection          patchCord55(delayExt1, 1, mixer6, 1);
+AudioConnection          patchCord56(delayExt1, 2, mixer6, 2);
+AudioConnection          patchCord57(delayExt1, 3, mixer6, 3);
+AudioConnection          patchCord58(delayExt1, 4, mixer5, 1);
+AudioConnection          patchCord59(delayExt1, 5, mixer5, 2);
+AudioConnection          patchCord60(mixer3, flange1);
+AudioConnection          patchCord61(mixer3, 0, i2s1, 0);
+AudioConnection          patchCord62(mixer3, delayExt1);
+AudioConnection          patchCord63(mixer6, 0, mixer5, 0);
+AudioConnection          patchCord64(mixer5, 0, filter1, 0);
+AudioConnection          patchCord65(flange1, 0, i2s1, 1);
+AudioConnection          patchCord66(filter1, 0, mixer3, 0);
 AudioControlSGTL5000     sgtl5000_1;     //xy=1664,860
 // GUItool: end automatically generated code
 

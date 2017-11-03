@@ -54,7 +54,7 @@ int scale_index = 0;//var to keep track fo which scale is being used
 short l_delayline[FLANGE_DELAY_LENGTH];
 int s_idx = FLANGE_DELAY_LENGTH / 4;
 int s_depth = FLANGE_DELAY_LENGTH / 8;
-double s_freq = 1.5;
+double s_freq = 1.8;
 CapacitiveSensor   cs_4_2 = CapacitiveSensor(35, 34);
 int dcVal = 0;//value to control the decay of each note
 int headset = 0;
@@ -73,7 +73,7 @@ int reso = 3;
 void setup()
 {
   cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF);     // turn off autocalibrate on channel 1 - just as an example
-   AudioMemory(130);
+   AudioMemory(110);
  //initialize buttons
   pinMode(2, INPUT_PULLUP);
   pinMode(3, INPUT_PULLUP);
@@ -99,31 +99,21 @@ void setup()
   sgtl5000_1.volume(0.8);
   //enable line out for troubleshooting on O-scope
   //sgtl5000_1.unmuteLineout();
-//  filter1.resonance(reso);
-//  filter2.resonance(reso);
-//  filter3.resonance(reso);
-//  filter4.resonance(reso);
-//  filter1.frequency(50);
-//  filter2.frequency(100);
-//  filter3.frequency(200);
-//  filter4.frequency(400);
-//  filter21.frequency(1500);
-//  filter1.octaveControl(2);
-//  filter2.octaveControl(2);
-//  filter3.octaveControl(2);
-//  filter4.octaveControl(2);
-  delayExt1.delay(5, 20);
-  delayExt1.delay(4, 100);
-  delayExt1.delay(3, 400);
-  delayExt1.delay(2, 1000);
-  delayExt1.delay(1, 4000);
-  delayExt1.delay(0, 6000);
+  delayExt1.delay(0,100);
+  delayExt1.delay(1, 200);
+  delayExt1.delay(2, 400);
+  delayExt1.delay(3, 1000);
+  delayExt1.delay(4, 4000);
+  delayExt1.delay(5, 6000);
   for (int s = 0 ; s < 8; s ++)
   {
     sines[s]->phase(90);
-    dcs[s]->multiseg(levels1, times1, sizeof(levels1)/4,128);
-    dcs[s+8]->multiseg(levels2, times2, sizeof(levels2)/4,128);
+    dcs[s]->multiseg(levels1, times1, sizeof(levels1)/4,256);
+    dcs[s+8]->multiseg(levels2, times2, sizeof(levels2)/4,256);
   }
+  filter1.frequency(1000);
+  filter1.resonance(1);
+
 
 }
 //////////////////////////////////////////////
@@ -138,18 +128,13 @@ void loop()
   dcValCheck();//check the decay knob
 
   buttonCheck();//check for button presses to change the scale
-//  filter1.frequency(note_frequency[scale[scale_index][0]] + ps);
-//  filter2.frequency(note_frequency[scale[scale_index][2]] + ps);
-//  filter3.frequency(note_frequency[scale[scale_index][4]] + ps);
-//  filter4.frequency(note_frequency[scale[scale_index][6]] + ps);
-//  Serial.print("CPU: ");
 }
 /////////////////////////////////////////////////////
 void volumeCheck()
 {
   //check knob value for volume
   int knob = analogRead(A7);
-  int fknob = analogRead(A20);
+  int fknob = analogRead(A19);
   shift = map(analogRead(37), 0, 1023, 0, 12);
   if (shift - 6 == 0)
     digitalWrite(33, HIGH);
@@ -172,7 +157,8 @@ void dcValCheck()
 {
   //check knob and set value as delay on dc constant for sine wave decay
   dcVal = map(analogRead(A6), 0, 1023, 1, 1000);
-  headset = map(analogRead(A18), 0, 1023, 0, 21);
+  headset = map(analogRead(36), 0, 1023, 0, 21);
+    Serial.println(headset);
   float f = 1;
   if (headset > 6)
     f = 0.5;
@@ -185,16 +171,13 @@ void dcValCheck()
   if (headset > 62)
     f = 1.0 / 6.0;
   int *mix = heads[headset];
-  f = f * fBack;
-//  mixer5.gain(1, mix[0] * f);
-//  mixer5.gain(2, mix[1] * f);
-  mixer6.gain(0, mix[2] * f);
-  mixer6.gain(1, mix[3] * f);
-  mixer6.gain(2, mix[4] * f);
-  mixer6.gain(3, mix[5] * f);
-//filter1.frequency(analogRead(36));
-//filter1.resonance(5);
-
+  f =f * fBack;
+  mixer5.gain(1, mix[4] * f);
+  mixer5.gain(2, mix[5] * f);
+  mixer6.gain(0, mix[0] * f);
+  mixer6.gain(1, mix[1] * f);
+  mixer6.gain(2, mix[2] * f);
+  mixer6.gain(3, mix[3] * f);
 
 }
 /////////////////////////////////////////////////////
@@ -243,7 +226,7 @@ void hang(int t, AudioSynthWaveformSine *sine, AudioSynthWaveformSine *sinex, Au
   }
   if (!touched && pinTouched[t])
   {
-    //one the pad is released, the note fades out with a decay val set by the dcVal knob
+    //once the pad is released, the note fades out with a decay val set by the dcVal knob
     dc->noteOff();
     dcx->noteOff();
     dc->amplitude(0, dcVal);
@@ -260,8 +243,8 @@ void touchCheck()
   //Each capacitive touch pad will vary based on the size and material it is made of
   //The value necessary to trigger each note will require some trial and error to get the
   //sensitivity just right. Try adjusting these values to get the best response.
-  for (int s = 0; s < 16; s += 2)
-    hang(s / 2, sines[s / 2], sines[s / 2 + 1], dcs[s / 2], dcs[s / 2+1]);
+  for (int s = 0; s < 8; s ++)
+    hang(s , sines[s ], sines[s+8], dcs[s], dcs[s+8]);
 }
 //////////////////////////////////////////////////
 void buttonCheck()
