@@ -1,0 +1,348 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=shift_jis">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link id=Main-File rel=Main-File href="../hang%20drum.htm">
+<link rel=File-List href=filelist.xml>
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:.75in .7in .75in .7in;
+	mso-header-margin:.3in;
+	mso-footer-margin:.3in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(0);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../hang%20drum.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link="#0563C1" vlink="#954F72">
+
+<table border=0 cellpadding=0 cellspacing=0 width=594 style='border-collapse:
+ collapse;table-layout:fixed;width:446pt'>
+ <col width=74 style='mso-width-source:userset;mso-width-alt:2706;width:56pt'>
+ <col width=64 style='width:48pt'>
+ <col width=72 style='mso-width-source:userset;mso-width-alt:2633;width:54pt'>
+ <col width=64 span=6 style='width:48pt'>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl65 width=74 style='height:15.0pt;width:56pt'>Teensy Pin</td>
+  <td class=xl65 width=64 style='width:48pt'>Signal</td>
+  <td class=xl65 width=72 style='width:54pt'>Target</td>
+  <td class=xl65 width=64 style='width:48pt'>Color</td>
+  <td width=64 style='width:48pt'></td>
+  <td class=xl65 width=64 style='width:48pt'>Teensy Pi<span style='display:
+  none'>n</span></td>
+  <td class=xl65 width=64 style='width:48pt'>Signal</td>
+  <td class=xl65 width=64 style='width:48pt'>Target</td>
+  <td class=xl65 width=64 style='width:48pt'>Color</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl74 style='height:15.0pt'>GND</td>
+  <td class=xl75>gnd</td>
+  <td class=xl75>digital gnd</td>
+  <td class=xl76>black</td>
+  <td></td>
+  <td class=xl74>26</td>
+  <td class=xl75>Vin</td>
+  <td class=xl75>V Input</td>
+  <td class=xl93>red</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl77 style='height:15.0pt'>0</td>
+  <td class=xl69>Touch0</td>
+  <td class=xl69>Key 8</td>
+  <td class=xl78>grey</td>
+  <td></td>
+  <td class=xl77>25</td>
+  <td class=xl69>AGND</td>
+  <td class=xl69>gnd bus</td>
+  <td class=xl94>black</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl77 style='height:15.75pt'>1</td>
+  <td class=xl69>Touch1</td>
+  <td class=xl69>Key 7</td>
+  <td class=xl79>green</td>
+  <td></td>
+  <td class=xl82>24</td>
+  <td class=xl71>3.3V</td>
+  <td class=xl71>+ bus'</td>
+  <td class=xl87>yellow</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl77 style='height:15.0pt'>2</td>
+  <td class=xl69>D2</td>
+  <td class=xl69>up</td>
+  <td class=xl80>blue</td>
+  <td></td>
+  <td class=xl77>23</td>
+  <td></td>
+  <td></td>
+  <td class=xl89>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl77 style='height:15.75pt'>3</td>
+  <td class=xl69>D3</td>
+  <td class=xl69>down</td>
+  <td class=xl81>yellow</td>
+  <td></td>
+  <td class=xl77>22</td>
+  <td></td>
+  <td></td>
+  <td class=xl89>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl82 style='height:15.75pt'>4</td>
+  <td class=xl71>D4</td>
+  <td class=xl71>LED0</td>
+  <td class=xl83>white</td>
+  <td></td>
+  <td class=xl84>21</td>
+  <td class=xl67>A7</td>
+  <td class=xl67>volume</td>
+  <td class=xl95>grey</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl84 style='height:15.75pt;border-top:none'>5</td>
+  <td class=xl67 style='border-top:none'>D5</td>
+  <td class=xl67 style='border-top:none'>LED1</td>
+  <td class=xl85 style='border-top:none'>grey</td>
+  <td></td>
+  <td class=xl82>20</td>
+  <td class=xl71>A6</td>
+  <td class=xl71>decay</td>
+  <td class=xl83>white</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl77 style='height:15.0pt'>6</td>
+  <td class=xl69>n/a</td>
+  <td class=xl69></td>
+  <td class=xl86>&nbsp;</td>
+  <td></td>
+  <td class=xl77>19</td>
+  <td class=xl69></td>
+  <td class=xl69></td>
+  <td class=xl86>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl77 style='height:15.75pt'>7</td>
+  <td class=xl69>n/a</td>
+  <td class=xl69></td>
+  <td class=xl86>&nbsp;</td>
+  <td></td>
+  <td class=xl77>18</td>
+  <td class=xl69></td>
+  <td class=xl69></td>
+  <td class=xl86>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl82 style='height:15.75pt'>8</td>
+  <td class=xl71>D8</td>
+  <td class=xl71>LED2</td>
+  <td class=xl87>yellow</td>
+  <td></td>
+  <td class=xl84>17</td>
+  <td class=xl67>A3</td>
+  <td class=xl67>Key 4</td>
+  <td class=xl96>black</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl77 style='height:15.0pt'>9</td>
+  <td class=xl69></td>
+  <td class=xl69></td>
+  <td class=xl88>&nbsp;</td>
+  <td></td>
+  <td class=xl77>16</td>
+  <td class=xl69>A2</td>
+  <td class=xl69>Key 5</td>
+  <td class=xl86>white</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl77 style='height:15.75pt'>10</td>
+  <td></td>
+  <td></td>
+  <td class=xl89>&nbsp;</td>
+  <td></td>
+  <td class=xl82>15</td>
+  <td class=xl71>A1</td>
+  <td class=xl71>Key 6</td>
+  <td class=xl87>yellow</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl77 style='height:15.0pt'>11</td>
+  <td></td>
+  <td></td>
+  <td class=xl89>&nbsp;</td>
+  <td></td>
+  <td class=xl77>14</td>
+  <td></td>
+  <td></td>
+  <td class=xl89>&nbsp;</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl90 style='height:15.0pt'>12</td>
+  <td class=xl91>&nbsp;</td>
+  <td class=xl91>&nbsp;</td>
+  <td class=xl92>&nbsp;</td>
+  <td></td>
+  <td class=xl90>13</td>
+  <td class=xl91>&nbsp;</td>
+  <td class=xl91>&nbsp;</td>
+  <td class=xl92>&nbsp;</td>
+ </tr>
+ <tr height=40 style='height:30.0pt;mso-xlrowspan:2'>
+  <td height=40 colspan=9 style='height:30.0pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=9 style='height:15.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl66 style='height:15.0pt'>28B</td>
+  <td class=xl67>A17</td>
+  <td class=xl67>FB</td>
+  <td class=xl102>grey</td>
+  <td></td>
+  <td class=xl98>29B</td>
+  <td class=xl99>&nbsp;</td>
+  <td class=xl99>&nbsp;</td>
+  <td class=xl106>&nbsp;</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 style='height:15.0pt'>27B</td>
+  <td class=xl69>A16</td>
+  <td class=xl69>Pitch</td>
+  <td class=xl101>white</td>
+  <td></td>
+  <td class=xl107>30B</td>
+  <td></td>
+  <td></td>
+  <td class=xl108>&nbsp;</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 style='height:15.0pt'>26B</td>
+  <td class=xl69>A15</td>
+  <td class=xl69>Head</td>
+  <td class=xl100>yellow</td>
+  <td></td>
+  <td class=xl107>31B</td>
+  <td></td>
+  <td></td>
+  <td class=xl108>&nbsp;</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 style='height:15.0pt'>25B</td>
+  <td class=xl69>T25</td>
+  <td class=xl69>Key 3</td>
+  <td class=xl97>green</td>
+  <td></td>
+  <td class=xl68>32B</td>
+  <td class=xl69>T32</td>
+  <td class=xl69>Key 2</td>
+  <td class=xl72>red</td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 class=xl103 style='height:15.75pt'>24B</td>
+  <td class=xl104>D24</td>
+  <td class=xl104>LED3</td>
+  <td class=xl105>black</td>
+  <td></td>
+  <td class=xl70>33B</td>
+  <td class=xl71>T33</td>
+  <td class=xl71>Key 1</td>
+  <td class=xl73>blue</td>
+ </tr>
+ <tr height=80 style='height:60.0pt;mso-xlrowspan:4'>
+  <td height=80 colspan=9 style='height:60.0pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 style='height:15.0pt'></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td colspan=4 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl69 style='height:15.0pt'></td>
+  <td class=xl69></td>
+  <td class=xl69></td>
+  <td class=xl69></td>
+  <td></td>
+  <td colspan=4 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl69 style='height:15.0pt'></td>
+  <td class=xl69></td>
+  <td class=xl69></td>
+  <td class=xl69></td>
+  <td></td>
+  <td colspan=4 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 style='height:15.0pt'></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td colspan=4 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 style='height:15.0pt'></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td colspan=4 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 style='height:15.0pt'></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td colspan=4 style='mso-ignore:colspan'></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=74 style='width:56pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=72 style='width:54pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>
