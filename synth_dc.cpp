@@ -39,6 +39,12 @@ void AudioSynthWaveformDc::update(void)
 
 	if (state == 0) {
 		// steady DC output, simply fill the buffer with fixed value
+//		if(noteon)
+//		{
+//			Serial.print(actseg);
+//			Serial.print(" ? ");
+//			Serial.println(noteon);
+//		}
 		if(!noteon||actseg>=segments)
 		{
 			val = pack_16t_16t(magnitude, magnitude);
@@ -53,13 +59,16 @@ void AudioSynthWaveformDc::update(void)
 				*p++ = val;
 			} while (p < end);
 			noteon=false;
-//			Serial.println(actseg);
 		}
 		if(noteon&&actseg<segments){
 			actseg++;
-			amplitude(levels[actseg]/maxlevel, times[actseg]);
-//			Serial.println(actseg);
-		}
+			amplitude(levels[actseg]/maxlevel, times[actseg-1]);
+/* 			Serial.print(actseg);
+			Serial.print(": t: ");
+			Serial.print(times[actseg-1]);
+			Serial.print(" l=");
+			Serial.println(levels[actseg]/maxlevel);
+ */		}
 	} else {
 		// transitioning to a new DC level
 		//count = (target - magnitude) / increment;
