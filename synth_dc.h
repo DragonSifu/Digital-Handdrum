@@ -134,20 +134,17 @@ public:
 	void noteOn(){
 		actseg=0;
 		noteon=true;
-		amplitude(levels[0]/maxlevel);
+		amplitude(levels[0]);
 	}
-	void noteOff(){
+	void noteOff(float n, float milliseconds){
 		noteon=false;
+		amplitude(n,milliseconds);
 	}
-	void multiseg(float *plevels,float *ptimes,int32_t  psegments,float pmaxlevel)
+	void multiseg(float *plevels,float *ptimes,int32_t  psegments)
 	{
 		times=ptimes;
 		levels=plevels;
 		segments=psegments;
-		actseg=0;
-		noteon=true;
-		maxlevel=pmaxlevel!=0?pmaxlevel:128.0;
-		amplitude(levels[0]/maxlevel);
 	}
 	virtual void update(void);
 private:

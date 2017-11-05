@@ -45,10 +45,14 @@ void AudioSynthWaveformDc::update(void)
 //			Serial.print(" ? ");
 //			Serial.println(noteon);
 //		}
-		if(!noteon||actseg>=segments)
+		if((!noteon||actseg>=segments))
 		{
+			if(noteon)
+			{
+				magnitude=0;
+			}
 			val = pack_16t_16t(magnitude, magnitude);
-			do {
+		do {
 				*p++ = val;
 				*p++ = val;
 				*p++ = val;
@@ -58,11 +62,10 @@ void AudioSynthWaveformDc::update(void)
 				*p++ = val;
 				*p++ = val;
 			} while (p < end);
-			noteon=false;
 		}
 		if(noteon&&actseg<segments){
 			actseg++;
-			amplitude(levels[actseg]/maxlevel, times[actseg-1]);
+			amplitude(levels[actseg], times[actseg-1]);
 /* 			Serial.print(actseg);
 			Serial.print(": t: ");
 			Serial.print(times[actseg-1]);
