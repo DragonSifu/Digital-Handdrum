@@ -34,6 +34,7 @@
 
 #include "note_frequency.h"
 #include "scales.h"
+#include "envelope.h"
 
 #include "TeensyAudioDesignTool.h"
 #define SDCARD_MOSI_PIN  7
@@ -43,22 +44,7 @@
 //all other touch sense pins are used by the Teensy Audio Shield (16,17,18,19)
 int pinTouch[] = { 30, 29, 36, 17, 16, 15, 0, 1 };
 int pinTouched[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-float times1[] = {46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399,1000};
-float levels1[] = {11.7842, 37.6133, 58.8514, 54.8132, 35.0583, 12.5009, 28.2544, 45.1741, 49.651, 41.8144, 26.051, 7.67638, 9.24065, 19.8515, 23.3696, 20.5023, 13.3139, 5.21845, 5.5731, 10.4163, 12.4206, 11.3638, 8.21327, 4.42632, 2.9941, 4.78179, 5.98326, 5.85429, 4.64338, 3.04, 2.0808, 2.45306, 2.99911, 3.04376, 2.59598, 1.8986, 1.37004, 1.34051,0};
-float times2[] = {46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399, 46.4399,1000};
-float levels2[] = {1.70942, 2.88297, 2.42013, 1.55168, 1.66113, 2.6902, 2.23071, 1.16266, 2.13107, 2.42039, 1.9439, 2.04335, 2.08932, 1.56737, 1.21108, 1.19832, 0.983475, 0.820071, 0.863637, 0.7823, 0.644484, 0.656868, 0.653003, 0.595038, 0.585751, 0.576402, 0.520374, 0.461493, 0.427815, 0.379099, 0.321115, 0.280087, 0.243894, 0.200046, 0.164005, 0.142196, 0.119694, 0.101638,0};
-float times3[] = {
-23.22,23.22,46.4399,1695.06
-};
- float levels3[] = {
-  44.9213,33.8593,27.1038,24.4747,0.001
- };
-float times4[] = {
-  1787.94
-};
-float levels4[] = {
-  3.10535,0.001
-  };
+
 int cos1[] = {1, 0};
 int scale_index = 0;//var to keep track fo which scale is being used
 #define FLANGE_DELAY_LENGTH (4*AUDIO_BLOCK_SAMPLES)
@@ -81,9 +67,9 @@ Bounce button1 = Bounce(3, 15);
 AudioSynthWaveformSine   *sines[] = { &sine1, &sine3, &sine5, &sine7, &sine9, &sine11, &sine13, &sine15, &sine2, &sine4, &sine6, &sine8, &sine10, &sine12, &sine14, &sine16 };
 AudioSynthWaveformDc     *dcs[] = { &dc1, &dc3, &dc5, &dc7, &dc9, &dc11, &dc13, &dc15, &dc2, &dc4, &dc6, &dc8, &dc10, &dc12, &dc14, &dc16 };
 unsigned long lastDebounceTime[] = {0, 0, 0, 0, 0, 0, 0, 0}; // the last time the output pin was toggled
-unsigned long debounceDelay[] = {10, 20, 30, 40,50,60, 70, 80}; // the debounce time; increase if the output flickers
+unsigned long debounceDelay[] = {10, 20, 30, 40, 50, 60, 70, 80}; // the debounce time; increase if the output flickers
 
-bool debug = 1;//Set to 1 for Serial debugging
+bool debug = 0;//Set to 1 for Serial debugging
 int reso = 3;
 ////////////////////////////////////////////////////////
 void setup()
@@ -127,19 +113,16 @@ void setup()
   delayExt1.delay(5, 6000);
   for (int s = 0 ; s < 8; s ++)
   {
-    sines[s + 8]->phase(90);
-    dcs[s]->multiseg(levels1, times1, sizeof(times1) / 4, 40);
-    dcs[s + 8]->multiseg(levels2, times2, sizeof(times2) / 4, 40);
+    sines[s+8]->phase(90);
+    dcs[s]->multiseg(levels0, times0, sizeof(times0) / 4);
+    dcs[s + 8]->multiseg(levels1, times1, sizeof(times1) / 4);
   }
   filter1.frequency(1000);
   filter1.resonance(1);
-
-
-}
+ }
 //////////////////////////////////////////////
 void loop()
 {
-  int ps = shift - 6;
 
   volumeCheck();//check the volume knob
 
@@ -163,9 +146,9 @@ void volumeCheck()
     digitalWrite(33, LOW);
 
   float vol = (float)knob / 1280.0;
-  fBack = (float)fknob / 640.0;
+ fBack = (float)fknob / 640.0;
   sgtl5000_1.volume(vol);
-  if (debug == 11)
+  if (debug == 1)
   {
     Serial.print("A17 = ");
     Serial.println(fBack);
@@ -178,7 +161,7 @@ void dcValCheck()
 {
   //check knob and set value as delay on dc constant for sine wave decay
   dcVal = map(analogRead(A6), 0, 1023, 1, 1000);
-  headset = map(analogRead(36), 0, 1023, 0, 21);
+ headset = map(analogRead(36), 0, 1023, 0, 21);
   //Serial.println(headset);
   float f = 1;
   if (headset > 6)
@@ -193,6 +176,7 @@ void dcValCheck()
     f = 1.0 / 6.0;
   int *mix = heads[headset];
   f = f * fBack;
+
   mixer5.gain(1, mix[4] * f);
   mixer5.gain(2, mix[5] * f);
   mixer6.gain(0, mix[0] * f);
@@ -200,24 +184,44 @@ void dcValCheck()
   mixer6.gain(2, mix[2] * f);
   mixer6.gain(3, mix[3] * f);
 
+
 }
 void OnNoteOn(byte channel, byte note, byte velocity)
 {
-//  Serial.print("note ");
-// Serial.println(note);
-
+  //  Serial.print("note ");
+  // Serial.println(note);
+  AudioNoInterrupts();
   sines[0]->frequency(note_frequency[note]);
-  sines[1]->frequency(2 * note_frequency[note]);
+  sines[8]->frequency(2 * note_frequency[note]);
   dcs[0]->noteOn();
-  dcs[1]->noteOn();
+  dcs[8]->noteOn();
+  AudioInterrupts();
 }
+void PadNoteOn(int p, byte note)
+{
+  //  Serial.print("note ");
+  // Serial.println(note);
+  AudioNoInterrupts();
+  sines[p]->frequency( note_frequency[note]);
+  sines[p + 8]->frequency(2*note_frequency[note]);
+  dcs[p]->noteOn();
+  dcs[p + 8]->noteOn();
+  AudioInterrupts();
+}
+void PadNoteOff(int p)
+{
+  AudioNoInterrupts();
+  dcs[p]->noteOff(0, dcVal);
+  dcs[p + 8]->noteOff(0, dcVal);
+  AudioInterrupts();
 
+}
 void OnNoteOff(byte channel, byte note, byte velocity)
 {
-  dcs[0]->noteOff();
-  dcs[1]->noteOff();
-  dcs[0]->amplitude(0, dcVal);
-  dcs[1]->amplitude(0, dcVal);
+  AudioNoInterrupts();
+  dcs[0]->noteOff(0, dcVal);
+  dcs[8]->noteOff(0, dcVal);
+  AudioInterrupts();
 
 }
 void OnPitchChange(byte channel, int pitch)
@@ -236,7 +240,7 @@ void OnControlChange(byte channel, byte control, byte value)
   float ccv = (float)value;
 }
 /////////////////////////////////////////////////////
-void hang(int t, AudioSynthWaveformSine *sine, AudioSynthWaveformSine *sinex, AudioSynthWaveformDc *dc, AudioSynthWaveformDc *dcx)
+void hang(int t)
 {
   int touch = touchRead(pinTouch[t]);
   long total1 = 1700;
@@ -244,7 +248,7 @@ void hang(int t, AudioSynthWaveformSine *sine, AudioSynthWaveformSine *sinex, Au
   if (t == 2)
   {
     total1 =  cs_4_2.capacitiveSensor(30);
-    if (total1 < 100)
+    if (total1 < 200)
       touched = true;
     if (touched)
     {
@@ -261,7 +265,7 @@ void hang(int t, AudioSynthWaveformSine *sine, AudioSynthWaveformSine *sinex, Au
   int ps = shift - 6;
   if ( touched  && pinTouched[t] == 0)
   {
-   if (debug == 11)
+    if (debug == 11)
     {
       Serial.print("touch ");
       Serial.print(t);
@@ -270,14 +274,7 @@ void hang(int t, AudioSynthWaveformSine *sine, AudioSynthWaveformSine *sinex, Au
     }
     //once a pad is touched, a value from the note frquency froma table is looked up via a 2D table
     //with x corresponding to a scale and y corresponding to one of the eight notes on the drum.
-OnNoteOn(1, scale[scale_index][t] + ps-12, 127);
-OnNoteOn(2, scale[scale_index][t] + ps, 127);
-/*
-    sine->frequency(note_frequency[scale[scale_index][t] + ps]);
-    sinex->frequency(2 * note_frequency[scale[scale_index][t] + ps]);
-    dc->noteOn();
-    dcx->noteOn();
-*/
+    PadNoteOn(t, scale[scale_index][t] + ps );
     if (pinTouched[t] == 0)
       usbMIDI.sendNoteOn(scale[scale_index][t] + ps, 100, 1);
     pinTouched[t] = 1;
@@ -285,12 +282,7 @@ OnNoteOn(2, scale[scale_index][t] + ps, 127);
   if (!touched && pinTouched[t])
   {
     //once the pad is released, the note fades out with a decay val set by the dcVal knob
-OnNoteOff(1, scale[scale_index][t] + ps-12, 127);
-OnNoteOff(2, scale[scale_index][t] + ps, 127);
-//    dc->noteOff();
-//    dcx->noteOff();
-//    dc->amplitude(0, dcVal);
-//    dcx->amplitude(0, dcVal);
+    PadNoteOff(t);
     if (pinTouched[t] == 1)
       usbMIDI.sendNoteOff(scale[scale_index][t] + ps, 0, 1);
     pinTouched[t] = 0;
@@ -304,7 +296,7 @@ void touchCheck()
   //The value necessary to trigger each note will require some trial and error to get the
   //sensitivity just right. Try adjusting these values to get the best response.
   for (int s = 0; s < 8; s ++)
-    hang(s , sines[s ], sines[s + 8], dcs[s], dcs[s + 8]);
+    hang(s );
 }
 //////////////////////////////////////////////////
 void buttonCheck()

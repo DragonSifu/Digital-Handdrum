@@ -5,66 +5,66 @@
 #include <SerialFlash.h>
 
 // GUItool: begin automatically generated code
-AudioSynthWaveformSine   sine13;         //xy=225,805
-AudioSynthWaveformSine   sine14;         //xy=225,863
-AudioSynthWaveformSine   sine15;         //xy=225,921
-AudioSynthWaveformSine   sine16;         //xy=225,979
-AudioSynthWaveformSine   sine12;         //xy=228,735
-AudioSynthWaveformSine   sine9;          //xy=229,570
-AudioSynthWaveformSine   sine10;         //xy=229,628
-AudioSynthWaveformSine   sine11;         //xy=229,683
-AudioSynthWaveformSine   sine5;          //xy=231,312
-AudioSynthWaveformSine   sine6;          //xy=231,370
-AudioSynthWaveformSine   sine7;          //xy=231,428
-AudioSynthWaveformSine   sine8;          //xy=231,486
-AudioSynthWaveformSine   sine1;          //xy=233,73
-AudioSynthWaveformSine   sine2;          //xy=233,131
-AudioSynthWaveformSine   sine3;          //xy=233,189
-AudioSynthWaveformSine   sine4;          //xy=233,247
-AudioSynthWaveformDc     dc16;           //xy=380,1017
-AudioSynthWaveformDc     dc14;           //xy=399,892
-AudioSynthWaveformDc     dc6;            //xy=401,400
-AudioSynthWaveformDc     dc15;           //xy=399,954
-AudioSynthWaveformDc     dc12;           //xy=400,767
-AudioSynthWaveformDc     dc9;            //xy=402,600
-AudioSynthWaveformDc     dc13;           //xy=402,837
-AudioSynthWaveformDc     dc5;            //xy=404,343
-AudioSynthWaveformDc     dc11;           //xy=403,712
-AudioSynthWaveformDc     dc10;           //xy=404,653
-AudioSynthWaveformDc     dc8;            //xy=405,521
-AudioSynthWaveformDc     dc3;            //xy=407,223
-AudioSynthWaveformDc     dc4;            //xy=407,279
-AudioSynthWaveformDc     dc1;            //xy=408,104
-AudioSynthWaveformDc     dc7;            //xy=408,460
-AudioSynthWaveformDc     dc2;            //xy=411,158
-AudioEffectMultiply      multiply6; //xy=584,982
-AudioEffectMultiply      multiply5; //xy=589,920
-AudioEffectMultiply      multiply8; //xy=591,810
-AudioEffectMultiply      multiply7; //xy=592,866
-AudioEffectMultiply      multiply13; //xy=600,688
-AudioEffectMultiply      multiply14; //xy=600,746
-AudioEffectMultiply      multiply15; //xy=603,633
-AudioEffectMultiply      multiply9; //xy=605,441
-AudioEffectMultiply      multiply10; //xy=605,499
-AudioEffectMultiply      multiply16; //xy=606,567
-AudioEffectMultiply      multiply11; //xy=608,386
-AudioEffectMultiply      multiply3;      //xy=609,196
-AudioEffectMultiply      multiply4;      //xy=609,254
-AudioEffectMultiply      multiply12; //xy=611,320
-AudioEffectMultiply      multiply2;      //xy=612,141
-AudioEffectMultiply      multiply1;      //xy=615,75
-AudioMixer4              mixer1;         //xy=789,805
-AudioMixer4              mixer9; //xy=814,664
-AudioMixer4              mixer8; //xy=819,417
-AudioMixer4              mixer7;         //xy=823,172
-AudioMixer4              mixer2;         //xy=1029,569
-AudioEffectDelayExternal delayExt1;      //xy=1110,238
-AudioMixer4              mixer3;         //xy=1176,567
-AudioMixer4              mixer6;         //xy=1308,209
-AudioMixer4              mixer5;         //xy=1349,328
-AudioEffectFlange        flange1;        //xy=1375,533
-AudioFilterStateVariable filter1;        //xy=1533,431
-AudioOutputI2S           i2s1;           //xy=1548,600
+AudioSynthWaveformSine   sine13;         //xy=166,776
+AudioSynthWaveformSine   sine14;         //xy=166,834
+AudioSynthWaveformSine   sine15;         //xy=166,892
+AudioSynthWaveformSine   sine16;         //xy=166,950
+AudioSynthWaveformSine   sine12;         //xy=169,706
+AudioSynthWaveformSine   sine9;          //xy=170,541
+AudioSynthWaveformSine   sine10;         //xy=170,599
+AudioSynthWaveformSine   sine11;         //xy=170,654
+AudioSynthWaveformSine   sine5;          //xy=172,283
+AudioSynthWaveformSine   sine6;          //xy=172,341
+AudioSynthWaveformSine   sine7;          //xy=172,399
+AudioSynthWaveformSine   sine8;          //xy=172,457
+AudioSynthWaveformSine   sine1;          //xy=174,44
+AudioSynthWaveformSine   sine2;          //xy=174,102
+AudioSynthWaveformSine   sine3;          //xy=174,160
+AudioSynthWaveformSine   sine4;          //xy=174,218
+AudioSynthWaveformDc     dc16;           //xy=321,988
+AudioSynthWaveformDc     dc14;           //xy=340,863
+AudioSynthWaveformDc     dc6;            //xy=342,371
+AudioSynthWaveformDc     dc15;           //xy=340,925
+AudioSynthWaveformDc     dc12;           //xy=341,738
+AudioSynthWaveformDc     dc9;            //xy=343,571
+AudioSynthWaveformDc     dc13;           //xy=343,808
+AudioSynthWaveformDc     dc5;            //xy=345,314
+AudioSynthWaveformDc     dc11;           //xy=344,683
+AudioSynthWaveformDc     dc10;           //xy=345,624
+AudioSynthWaveformDc     dc8;            //xy=346,492
+AudioSynthWaveformDc     dc3;            //xy=348,194
+AudioSynthWaveformDc     dc4;            //xy=348,250
+AudioSynthWaveformDc     dc1;            //xy=349,75
+AudioSynthWaveformDc     dc7;            //xy=349,431
+AudioSynthWaveformDc     dc2;            //xy=352,129
+AudioEffectMultiply      multiply6;      //xy=525,953
+AudioEffectMultiply      multiply5;      //xy=530,891
+AudioEffectMultiply      multiply8;      //xy=532,781
+AudioEffectMultiply      multiply7;      //xy=533,837
+AudioEffectMultiply      multiply13;     //xy=541,659
+AudioEffectMultiply      multiply14;     //xy=541,717
+AudioEffectMultiply      multiply15;     //xy=544,604
+AudioEffectMultiply      multiply9;      //xy=546,412
+AudioEffectMultiply      multiply10;     //xy=546,470
+AudioEffectMultiply      multiply16;     //xy=547,538
+AudioEffectMultiply      multiply11;     //xy=549,357
+AudioEffectMultiply      multiply3;      //xy=550,167
+AudioEffectMultiply      multiply4;      //xy=550,225
+AudioEffectMultiply      multiply12;     //xy=552,291
+AudioEffectMultiply      multiply2;      //xy=553,112
+AudioEffectMultiply      multiply1;      //xy=556,46
+AudioMixer4              mixer1;         //xy=730,776
+AudioMixer4              mixer9;         //xy=755,635
+AudioMixer4              mixer8;         //xy=760,388
+AudioMixer4              mixer7;         //xy=764,143
+AudioMixer4              mixer2;         //xy=970,540
+AudioEffectDelayExternal delayExt1;      //xy=1051,209
+AudioMixer4              mixer3;         //xy=1117,538
+AudioMixer4              mixer6;         //xy=1249,180
+AudioMixer4              mixer5;         //xy=1290,299
+AudioEffectFlange        flange1;        //xy=1316,504
+AudioFilterStateVariable filter1;        //xy=1474,402
+AudioOutputI2S           i2s1;           //xy=1489,571
 AudioConnection          patchCord1(sine13, 0, multiply8, 0);
 AudioConnection          patchCord2(sine14, 0, multiply7, 0);
 AudioConnection          patchCord3(sine15, 0, multiply5, 0);
@@ -124,13 +124,12 @@ AudioConnection          patchCord56(delayExt1, 2, mixer6, 2);
 AudioConnection          patchCord57(delayExt1, 3, mixer6, 3);
 AudioConnection          patchCord58(delayExt1, 4, mixer5, 1);
 AudioConnection          patchCord59(delayExt1, 5, mixer5, 2);
-AudioConnection          patchCord60(mixer3, flange1);
-AudioConnection          patchCord61(mixer3, 0, i2s1, 0);
+AudioConnection          patchCord60(mixer3, 0, i2s1, 0);
+AudioConnection          patchCord61(mixer3, 0, i2s1, 1);
 AudioConnection          patchCord62(mixer3, delayExt1);
 AudioConnection          patchCord63(mixer6, 0, mixer5, 0);
 AudioConnection          patchCord64(mixer5, 0, filter1, 0);
-AudioConnection          patchCord65(flange1, 0, i2s1, 1);
-AudioConnection          patchCord66(filter1, 0, mixer3, 0);
-AudioControlSGTL5000     sgtl5000_1;     //xy=1664,860
+AudioConnection          patchCord65(filter1, 0, mixer3, 0);
+AudioControlSGTL5000     sgtl5000_1;     //xy=1605,831
 // GUItool: end automatically generated code
 
